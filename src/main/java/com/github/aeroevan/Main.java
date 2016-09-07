@@ -1,9 +1,5 @@
 package com.github.aeroevan;
 
-import com.github.aeroevan.RangedHash;
-import com.github.aeroevan.RangedPairHash;
-import com.github.aeroevan.RangedTripleHash;
-
 import static com.github.aeroevan.Hasher.fromLongToString;
 
 /**
@@ -13,7 +9,10 @@ public class Main {
     public static void main(String[] args) {
         RangedHash r = new RangedHash(0.0, 1.0);
         long t = r.encodeToLong(0.1234);
-        System.out.println(fromLongToString(t));
+        String s = fromLongToString(t);
+        RangedHash.ReverseRangedHash rrh = r.decode(s);
+        System.out.println(s);
+        System.out.println(rrh.getValue() + " " + rrh.getError());
 
         RangedPairHash rp = new RangedPairHash(-180.0, 180.0, -90.0, 90.0);
         long tp = rp.encodeToLong(-84.4278640, 33.6366996);

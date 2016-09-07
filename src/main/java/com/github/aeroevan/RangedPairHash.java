@@ -5,6 +5,8 @@ package com.github.aeroevan;
  */
 public class RangedPairHash implements Hasher {
     private final static int NDIM = 2;
+
+    private static final RangedPairHash geohash = new RangedPairHash(-180.0, 180.0, -90.0, 90.0);
     private final double minX;
     private final double maxX;
     private final double minY;
@@ -15,6 +17,10 @@ public class RangedPairHash implements Hasher {
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
+    }
+
+    public static RangedPairHash geohash() {
+        return geohash;
     }
 
     public long encodeToLong(double x, double y) {

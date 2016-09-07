@@ -5,12 +5,17 @@ package com.github.aeroevan;
  */
 public class RangedHash implements Hasher {
 
+    private static final RangedHash timehash = new RangedHash(0.0, 4039372800.0);
     private final double min;
     private final double max;
 
     public RangedHash(double min, double max) {
         this.min = min;
         this.max = max;
+    }
+
+    public static RangedHash timehash() {
+        return timehash;
     }
 
     public long encodeToLong(double x) {
@@ -34,5 +39,40 @@ public class RangedHash implements Hasher {
             position >>>= 1;
         }
         return bits | length;
+    }
+
+    public ReverseRangedHash decode(String hash) {
+        double min = this.min;
+        double max = this.max;
+        for (Character c : hash.toCharArray()) {
+            int cd = decodeMap.get(c);
+            for (int i=0; i<5; i++) {
+                int mask = 1 << (4 - i);
+                double mid = (min + max) / 2.0;
+                if ((cd & mask) != 0) {
+                    min = mid;
+                } else {
+                    max = mid;
+                }
+            }
+        }
+        return new ReverseRangedHash((min + max) / 2.0, max - min);
+    }
+
+    public static class ReverseRangedHash {
+        private final double value;
+        private final double error;
+        public ReverseRangedHash(double value, double error) {
+            this.value = value;
+            this.error = error;
+        }
+
+        public double getValue() {
+            return value;
+        }
+
+        public double getError() {
+            return error;
+        }
     }
 }
