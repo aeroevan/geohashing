@@ -1,6 +1,7 @@
 package com.github.aeroevan;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.BitSet;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,6 +26,22 @@ public interface Hasher {
         for (int pos = 0; pos < length; pos++) {
             geohash.append(BASE32[(int) (hash >>> 59)]);
             hash <<= 5;
+        }
+        return geohash.toString();
+    }
+
+    static String fromBitSetToString(BitSet bs) {
+        int idx=0;
+        StringBuilder geohash = new StringBuilder(bs.length() / 5);
+        for (int i=0; i<bs.size(); i++) {
+            int rnd = i % 5;
+            if (rnd == 0 && (i > 0)) {
+                geohash.append(BASE32[idx]);
+                idx = 0;
+            }
+            if (bs.get(i)) {
+                idx += 1 << (4 - rnd);
+            }
         }
         return geohash.toString();
     }

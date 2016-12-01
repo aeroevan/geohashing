@@ -1,5 +1,7 @@
 package com.github.aeroevan;
 
+import java.util.BitSet;
+
 /**
  * Created by evan on 8/17/16.
  */
@@ -18,6 +20,28 @@ public class RangedHash implements Hasher {
         return timehash;
     }
 
+    public BitSet encode(double x) {
+        return encode(x, DEFAULT_LENGTH);
+    }
+
+    public BitSet encode(double x, int length) {
+        int n = 5 * length;
+        BitSet bs = new BitSet(n);
+        double min = this.min;
+        double max = this.max;
+        for (int i=0; i<n; i++) {
+            double mid = (min + max) / 2.0d;
+            if (x >= mid) {
+                bs.set(i);
+                min = mid;
+            } else {
+                max = mid;
+            }
+            System.out.println(mid);
+        }
+        return bs;
+    }
+
     public long encodeToLong(double x) {
         return encodeToLong(x, DEFAULT_LENGTH);
     }
@@ -29,7 +53,7 @@ public class RangedHash implements Hasher {
         double min = this.min;
         double max = this.max;
         while (position != target) {
-            double mid = (min + max) / 2;
+            double mid = (min + max) / 2d;
             if (x >= mid) {
                 bits |= position;
                 min = mid;
@@ -59,20 +83,4 @@ public class RangedHash implements Hasher {
         return new ReverseRangedHash((min + max) / 2.0, max - min);
     }
 
-    public static class ReverseRangedHash {
-        private final double value;
-        private final double error;
-        public ReverseRangedHash(double value, double error) {
-            this.value = value;
-            this.error = error;
-        }
-
-        public double getValue() {
-            return value;
-        }
-
-        public double getError() {
-            return error;
-        }
-    }
 }
