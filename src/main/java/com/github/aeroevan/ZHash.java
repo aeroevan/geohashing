@@ -21,7 +21,7 @@ public interface ZHash {
         if ((5 * length) < bs.length()) {
             throw new IllegalArgumentException("Bitset has more precision than requested length...");
         }
-        StringBuilder geohash = new StringBuilder(bs.length() / 5);
+        StringBuilder geohash = new StringBuilder(length);
         for (int i=0; i<length; i++) {
             int idx = 0;
             for (int j=0; j<5; j++) {
