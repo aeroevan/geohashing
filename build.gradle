@@ -28,6 +28,7 @@ dependencies {
 
     // Use TestNG framework, also requires calling test.useTestNG() below
     testCompile 'org.testng:testng:6.9.12'
+    testCompile 'ch.hsr:geohash:1.1.0'
 }
 
 buildscript {

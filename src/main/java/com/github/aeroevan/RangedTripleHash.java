@@ -3,7 +3,7 @@ package com.github.aeroevan;
 /**
  * Created by evan on 8/17/16.
  */
-public class RangedTripleHash implements Hasher {
+public class RangedTripleHash implements ZHash {
     private final static int NDIM = 3;
     private final double minX;
     private final double maxX;
@@ -21,6 +21,7 @@ public class RangedTripleHash implements Hasher {
         this.maxZ = maxZ;
     }
 
+    /*
     public long encodeToLong(double x, double y, double z) {
         return encodeToLong(x, y, z, DEFAULT_LENGTH);
     }
@@ -67,4 +68,5 @@ public class RangedTripleHash implements Hasher {
         }
         return bits | length;
     }
+    */
 }

@@ -3,7 +3,7 @@ package com.github.aeroevan;
 /**
  * Created by evan on 8/31/16.
  */
-public class RangedQuadHash implements Hasher {
+public class RangedQuadHash implements ZHash {
     private final static int NDIM = 4;
     private final double minA;
     private final double maxA;
@@ -26,6 +26,7 @@ public class RangedQuadHash implements Hasher {
         this.maxD = maxD;
     }
 
+    /*
     public long encodeToLong(double a, double b, double c, double d) {
         return encodeToLong(a, b, c, d, DEFAULT_LENGTH);
     }
@@ -82,4 +83,5 @@ public class RangedQuadHash implements Hasher {
         }
         return bits | length;
     }
+    */
 }
