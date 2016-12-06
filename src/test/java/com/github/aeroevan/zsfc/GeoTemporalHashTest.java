@@ -8,12 +8,11 @@ import java.time.Instant;
 import static org.testng.Assert.*;
 
 /**
- * Created by evan on 12/5/16.
+ * Test geotemporal hash encode/decode round trip.
  */
 public class GeoTemporalHashTest {
-
     @Test
-    public void random() {
+    public void encodeDecode() {
         double lat = (Math.random() - 0.5d) * 180d;
         double lon = (Math.random() - 0.5d) * 360d;
         Instant now = Instant.now();
@@ -29,5 +28,4 @@ public class GeoTemporalHashTest {
         assertTrue(Math.abs(lon - llt.getLongitude()) < llt.getLongitudeError(),
                 "Decoded longitude outside of error bounds: " + lat + ", " + lon);
     }
-
 }

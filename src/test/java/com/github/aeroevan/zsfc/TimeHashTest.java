@@ -9,7 +9,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**
- * A few random tests
+ * Test timehash encode/decode round trip.
  */
 public class TimeHashTest {
 
