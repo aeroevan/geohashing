@@ -1,4 +1,4 @@
-package com.github.aeroevan;
+package com.github.aeroevan.zsfc;
 
 import java.io.Serializable;
 import java.util.BitSet;

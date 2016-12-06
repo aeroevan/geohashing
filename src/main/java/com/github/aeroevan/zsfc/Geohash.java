@@ -1,7 +1,9 @@
-package com.github.aeroevan;
+package com.github.aeroevan.zsfc;
 
 /**
- * Created by evan on 12/4/16.
+ * Geohashing with more precision.
+ *
+ * 
  */
 public class Geohash implements Z2Hash {
     private static final double minLon = -180d;
@@ -14,6 +16,14 @@ public class Geohash implements Z2Hash {
     }
 
     public static String encode(double latitude, double longitude, int length) {
+        if (latitude < minLat || latitude > maxLat) {
+            throw new IllegalArgumentException(
+                    "Latitude (" + latitude + ") must be between " + minLat + " and " + maxLat + " degrees.");
+        }
+        if (longitude < minLon || longitude > maxLon) {
+            throw new IllegalArgumentException(
+                    "Longitude (" + longitude + ") must be between " + minLon + " and " + maxLon + " degrees.");
+        }
         return Z2Hash.encode(longitude, latitude, length, minLon, maxLon, minLat, maxLat);
     }
 
@@ -21,7 +31,7 @@ public class Geohash implements Z2Hash {
         return new LatLon(Z2Hash.decode(geohash, minLon, maxLon, minLat, maxLat));
     }
 
-    static class LatLon extends Z2 {
+    public static class LatLon extends Z2 {
         public LatLon(double latitude, double longitude, double dLat, double dLon) {
             super(longitude, latitude, dLon, dLat);
         }

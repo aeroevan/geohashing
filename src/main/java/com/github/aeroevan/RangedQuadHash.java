@@ -1,5 +1,7 @@
 package com.github.aeroevan;
 
+import com.github.aeroevan.zsfc.ZHash;
+
 /**
  * Created by evan on 8/31/16.
  */

@@ -1,11 +1,12 @@
-package com.github.aeroevan;
+package com.github.aeroevan.zsfc;
 
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.time.Instant;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
  * A few random tests

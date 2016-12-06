@@ -1,5 +1,7 @@
 package com.github.aeroevan;
 
+import com.github.aeroevan.zsfc.TimeHash;
+
 import java.time.Instant;
 
 /**

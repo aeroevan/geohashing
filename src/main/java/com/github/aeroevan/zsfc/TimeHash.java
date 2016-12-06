@@ -1,4 +1,4 @@
-package com.github.aeroevan;
+package com.github.aeroevan.zsfc;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -44,7 +44,7 @@ public class TimeHash implements Z1Hash {
         return new Time(Z1Hash.decode(hash, TimeHash.min, TimeHash.max));
     }
 
-    static class Time extends Z1 {
+    public static class Time extends Z1 {
 
         Time(double seconds, double error) {
             super(seconds, error);
