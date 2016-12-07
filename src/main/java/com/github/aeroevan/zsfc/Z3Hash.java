@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.BitSet;
 
 /**
- * Created by evan on 12/5/16.
+ * 3D Z-order curve hashing.
  */
 public interface Z3Hash extends ZHash {
     static String encode(double a, double b, double c,

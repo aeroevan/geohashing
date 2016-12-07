@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * Created by evan on 12/5/16.
+ * Implementation of lat/lon/time 3D hash.
  */
 public class GeoTemporalHash implements Z3Hash {
     private static final double minLon = -180d;
