@@ -6,7 +6,7 @@ import java.time.Instant;
 /**
  * Builds a timehash
  * <p />
- * see https://github.com/abeusher/timehash
+ * see https://github.com/abeusher/timehash but this implementation is a bit different...
  */
 public class TimeHash implements Z1Hash {
     private static final double min = 0d;
@@ -55,14 +55,14 @@ public class TimeHash implements Z1Hash {
         }
 
         public Instant getValue() {
-            long sec = (long)Math.floor(value);
-            long ns = (long)Math.floor((value - sec) * 1e9);
+            long sec = (long)value;
+            long ns = (long)((value - sec) * 1e9);
             return Instant.ofEpochSecond(sec, ns);
         }
 
         public Duration getError() {
-            long sec = (long)Math.floor(error);
-            long ns = (long)Math.floor((error - sec) * 1e9);
+            long sec = (long)error;
+            long ns = (long)((error - sec) * 1e9);
             // Minimum of 1 ms error due to timestamp truncation
             // (64 bit long + 32 bit int -> 64 bit double)
             if (sec == 0 && ns < 1000000) {
